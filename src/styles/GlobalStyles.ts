@@ -9,8 +9,10 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     background-color: ${Theme.colors.main};
-    color: ${Theme.colors.main};
+    color: ${Theme.colors.accent};
     min-width: 320px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
   }
   button {
     cursor: pointer;
