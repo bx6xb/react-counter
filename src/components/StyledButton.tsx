@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Theme } from "../styles/Theme"
 import { Font } from "../styles/Font"
 
-export const Button = styled.button`
+export const StyledButton = styled.button`
   background-color: ${Theme.colors.accent};
   color: ${Theme.colors.main};
   min-width: 40%;

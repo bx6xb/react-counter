@@ -1,7 +1,7 @@
 import { Container } from "./Container"
 import { Input } from "./Input"
 import { FlexWrapper } from "./FlexWrapper"
-import { Button } from "./Button"
+import { StyledButton } from "./StyledButton"
 import { ChangeEvent, useEffect, useState } from "react"
 
 type CounterSettingsPropsType = {
@@ -14,11 +14,22 @@ type CounterSettingsPropsType = {
 }
 
 export const CounterSettings = (props: CounterSettingsPropsType) => {
-  const [inputMaxValue, setInputMaxValue] = useState(5)
-  const [inputStartValue, setInputStartValue] = useState(0)
-  const [errorMaxValue, setErrorMaxValue] = useState(false)
-  const [errorStartValue, setErrorStartValue] = useState(false)
+  const [inputStartValue, setInputStartValue] = useState(props.startValue)
+  const [inputMaxValue, setInputMaxValue] = useState(props.maxValue)
 
+  // Render code
+  if (inputStartValue !== props.startValue || inputMaxValue !== props.maxValue) {
+    props.changeMessageText("Press 'set' button", false)
+  }
+
+  const isErrorMaxAndStart = inputMaxValue <= inputStartValue
+  const errorMaxValue = isErrorMaxAndStart || inputMaxValue < 0
+  const errorStartValue = isErrorMaxAndStart || inputStartValue < 0
+
+  const isError = errorMaxValue || errorStartValue
+  props.changeMessageText(isError ? "Incorrect value!" : "", isError)
+
+  // Functions
   const onChangeMaxValueInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
     value && setInputMaxValue(+value)
@@ -34,23 +45,6 @@ export const CounterSettings = (props: CounterSettingsPropsType) => {
     props.changeStartValue(inputStartValue)
     props.changeMessageText("", false)
   }
-
-  useEffect(() => {
-    const error = inputMaxValue === inputStartValue || inputMaxValue < inputStartValue
-    setErrorMaxValue(error)
-    setErrorStartValue(error)
-    if (error) return
-    setErrorMaxValue(inputMaxValue < 0)
-    setErrorStartValue(inputStartValue < 0)
-    if (!(errorMaxValue || errorStartValue)) {
-      props.changeMessageText("Press 'set' button", false)
-    }
-  }, [inputMaxValue, inputStartValue])
-
-  useEffect(() => {
-    const error = errorMaxValue || errorStartValue
-    props.changeMessageText(error ? "Incorrect value!" : "", error)
-  }, [errorMaxValue, errorStartValue])
 
   return (
     <Container>
@@ -70,9 +64,9 @@ export const CounterSettings = (props: CounterSettingsPropsType) => {
       </FlexWrapper>
 
       <FlexWrapper border padding="20px" justify="center" align="center">
-        <Button disabled={errorMaxValue || errorStartValue} onClick={onClickSetBtnHandler}>
+        <StyledButton disabled={errorMaxValue || errorStartValue} onClick={onClickSetBtnHandler}>
           set
-        </Button>
+        </StyledButton>
       </FlexWrapper>
     </Container>
   )

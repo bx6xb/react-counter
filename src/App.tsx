@@ -3,10 +3,15 @@ import { Counter } from "./components/Counter"
 import { CounterSettings } from "./components/CounterSettings"
 import { useState } from "react"
 
+const INITIAL_CURRENT_VALUE = 0
+const INITIAL_START_VALUE = 0
+const INITIAL_MAX_VALUE = 5
+
 function App() {
-  const [value, setValue] = useState(0)
-  const [startValue, setStartValue] = useState(0)
-  const [maxValue, setMaxValue] = useState(5)
+  const [value, setValue] = useState(INITIAL_CURRENT_VALUE)
+  const [startValue, setStartValue] = useState(INITIAL_START_VALUE)
+  const [maxValue, setMaxValue] = useState(INITIAL_MAX_VALUE)
+
   const [messageText, setMessageText] = useState("")
   const [error, setError] = useState(false)
 
@@ -24,7 +29,7 @@ function App() {
   }
 
   const changeMaxValue = (value: number) => {
-    console.log(setMaxValue(value))
+    setMaxValue(value)
   }
 
   const changeMessageText = (value: string, error: boolean) => {
@@ -42,6 +47,7 @@ function App() {
         changeMaxValue={changeMaxValue}
         changeMessageText={changeMessageText}
       />
+
       <Counter
         value={messageText || value}
         startValue={startValue}
@@ -55,8 +61,6 @@ function App() {
   )
 }
 
-export default App
-
 const StyledApp = styled.div`
   height: 100vh;
   display: flex;
@@ -64,3 +68,5 @@ const StyledApp = styled.div`
   align-items: center;
   gap: 40px;
 `
+
+export default App

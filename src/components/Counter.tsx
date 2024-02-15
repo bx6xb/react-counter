@@ -1,4 +1,4 @@
-import { Button } from "./Button"
+import { StyledButton } from "./StyledButton"
 import { Container } from "./Container"
 import { FlexWrapper } from "./FlexWrapper"
 import styled from "styled-components"
@@ -20,17 +20,18 @@ export const Counter = (props: CounterPropsType) => {
         <CounterCurrentValue error={props.error || props.value === props.maxValue}>{props.value}</CounterCurrentValue>
       </FlexWrapper>
       <FlexWrapper justify="space-around" border padding="20px">
-        <Button onClick={props.incValue} disabled={props.value === props.maxValue || !!props.messageText}>
+        <StyledButton onClick={props.incValue} disabled={props.value === props.maxValue || !!props.messageText}>
           inc
-        </Button>
-        <Button onClick={props.resetCounter} disabled={props.value === props.startValue || !!props.messageText}>
+        </StyledButton>
+        <StyledButton onClick={props.resetCounter} disabled={props.value === props.startValue || !!props.messageText}>
           reset
-        </Button>
+        </StyledButton>
       </FlexWrapper>
     </Container>
   )
 }
 
+// StyledCounterCurrentValue
 const CounterCurrentValue = styled.div<{ error: boolean }>`
   display: flex;
   justify-content: center;

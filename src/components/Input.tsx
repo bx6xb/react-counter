@@ -27,6 +27,7 @@ const StyledInput = styled.input.attrs({ type: "number" })<{ error?: boolean }>`
   max-width: 200px;
   text-align: center;
   font-size: 20px;
+  outline: none;
 `
 
 const StyledLabel = styled.label`
