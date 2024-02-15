@@ -2,7 +2,7 @@ import { Container } from "./Container"
 import { Input } from "./Input"
 import { FlexWrapper } from "./FlexWrapper"
 import { StyledButton } from "./StyledButton"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 type CounterSettingsPropsType = {
   value: number
@@ -27,7 +27,9 @@ export const CounterSettings = (props: CounterSettingsPropsType) => {
   const errorStartValue = isErrorMaxAndStart || inputStartValue < 0
 
   const isError = errorMaxValue || errorStartValue
-  props.changeMessageText(isError ? "Incorrect value!" : "", isError)
+  if (isError) {
+    props.changeMessageText(isError ? "Incorrect value!" : "", isError)
+  }
 
   // Functions
   const onChangeMaxValueInputHandler = (e: ChangeEvent<HTMLInputElement>) => {

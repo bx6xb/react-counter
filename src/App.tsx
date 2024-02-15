@@ -11,10 +11,10 @@ function App() {
   const [value, setValue] = useState(INITIAL_CURRENT_VALUE)
   const [startValue, setStartValue] = useState(INITIAL_START_VALUE)
   const [maxValue, setMaxValue] = useState(INITIAL_MAX_VALUE)
-
   const [messageText, setMessageText] = useState("")
   const [error, setError] = useState(false)
 
+  // Functions
   const incValue = () => {
     setValue(value + 1)
   }
