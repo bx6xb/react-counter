@@ -1,62 +1,46 @@
 import styled from "styled-components"
-import { Counter } from "./components/Counter"
-import { CounterSettings } from "./components/CounterSettings"
-import { useState } from "react"
+// import { Counter } from "./components/Counter/Counter"
+// import { CounterSettings } from "./components/CounterSettings/CounterSettings"
+// import { useEffect, useState } from "react"
+import { CounterContainer } from "./components/Counter/CounterContainer"
+import { CounterSettingsContainer } from "./components/CounterSettings/CounterSettingsContainer"
 
-const INITIAL_CURRENT_VALUE = 0
-const INITIAL_START_VALUE = 0
-const INITIAL_MAX_VALUE = 5
+// const INITIAL_CURRENT_VALUE = 0
+// const INITIAL_START_VALUE = 0
+// const INITIAL_MAX_VALUE = 5
 
 function App() {
-  const [value, setValue] = useState(INITIAL_CURRENT_VALUE)
-  const [startValue, setStartValue] = useState(INITIAL_START_VALUE)
-  const [maxValue, setMaxValue] = useState(INITIAL_MAX_VALUE)
-  const [messageText, setMessageText] = useState("")
-  const [error, setError] = useState(false)
+  // const [value, setValue] = useState(INITIAL_CURRENT_VALUE)
+  // const [startValue, setStartValue] = useState(INITIAL_START_VALUE)
+  // const [maxValue, setMaxValue] = useState(INITIAL_MAX_VALUE)
+  // const [messageText, setMessageText] = useState("")
+  // const [error, setError] = useState(false)
 
   // Functions
-  const incValue = () => {
-    setValue(value + 1)
-  }
+  // const incValue = () => {
+  //   setValue(value + 1)
+  // }
 
-  const resetCounter = () => {
-    setValue(startValue)
-  }
+  // const resetCounter = () => {
+  //   setValue(startValue)
+  // }
 
-  const changeStartValue = (value: number) => {
-    setStartValue(value)
-    setValue(value)
-  }
+  // // useEffect(resetCounter, [startValue])
 
-  const changeMaxValue = (value: number) => {
-    setMaxValue(value)
-  }
+  // const changeStartValue = (value: number) => {
+  //   setStartValue(value) // reducer also changing current value after clicking on button
+  //   setValue(value)
+  // }
 
-  const changeMessageText = (value: string, error: boolean) => {
-    setMessageText(value)
-    setError(error)
-  }
+  // const changeMessageText = (value: string, error: boolean) => {
+  //   setMessageText(value)
+  //   setError(error)
+  // }
 
   return (
     <StyledApp>
-      <CounterSettings
-        value={value}
-        startValue={startValue}
-        maxValue={maxValue}
-        changeStartValue={changeStartValue}
-        changeMaxValue={changeMaxValue}
-        changeMessageText={changeMessageText}
-      />
-
-      <Counter
-        value={messageText || value}
-        startValue={startValue}
-        maxValue={maxValue}
-        incValue={incValue}
-        resetCounter={resetCounter}
-        messageText={messageText}
-        error={error}
-      />
+      <CounterSettingsContainer />
+      <CounterContainer />
     </StyledApp>
   )
 }

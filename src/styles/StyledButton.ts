@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import { Theme } from "../styles/Theme"
-import { Font } from "../styles/Font"
+import { Theme } from "./Theme"
+import { Font } from "./Font"
 
 export const StyledButton = styled.button`
   background-color: ${Theme.colors.accent};

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Theme } from "../styles/Theme"
-import { FlexWrapper } from "./FlexWrapper"
+import { FlexWrapper } from "../styles/FlexWrapper"
 import { ChangeEvent } from "react"
 
 type InputPropsType = {

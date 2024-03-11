@@ -1,10 +1,10 @@
-import { StyledButton } from "./StyledButton"
-import { Container } from "./Container"
-import { FlexWrapper } from "./FlexWrapper"
+import { StyledButton } from "../../styles/StyledButton"
+import { Container } from "../../styles/Container"
+import { FlexWrapper } from "../../styles/FlexWrapper"
 import styled from "styled-components"
 
 type CounterPropsType = {
-  value: number | string
+  currentValue: number | string
   startValue: number
   maxValue: number
   incValue: () => void
@@ -17,13 +17,21 @@ export const Counter = (props: CounterPropsType) => {
   return (
     <Container>
       <FlexWrapper justify="center" align="center" border padding="30px">
-        <CounterCurrentValue error={props.error || props.value === props.maxValue}>{props.value}</CounterCurrentValue>
+        <CounterCurrentValue error={props.error || props.currentValue === props.maxValue}>
+          {props.currentValue}
+        </CounterCurrentValue>
       </FlexWrapper>
       <FlexWrapper justify="space-around" border padding="20px">
-        <StyledButton onClick={props.incValue} disabled={props.value === props.maxValue || !!props.messageText}>
+        <StyledButton
+          onClick={props.incValue}
+          disabled={props.currentValue === props.maxValue || !!props.messageText}
+        >
           inc
         </StyledButton>
-        <StyledButton onClick={props.resetCounter} disabled={props.value === props.startValue || !!props.messageText}>
+        <StyledButton
+          onClick={props.resetCounter}
+          disabled={props.currentValue === props.startValue || !!props.messageText}
+        >
           reset
         </StyledButton>
       </FlexWrapper>
