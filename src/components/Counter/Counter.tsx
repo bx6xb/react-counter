@@ -5,33 +5,28 @@ import styled from "styled-components"
 
 type CounterPropsType = {
   currentValue: number | string
-  startValue: number
-  maxValue: number
-  incValue: () => void
-  resetCounter: () => void
-  messageText: string
-  error: boolean
+
+  isError: boolean
+  isDisabledIncrementButton: boolean
+  isDisabledResetButton: boolean
+  incrementOnClick: () => void
+  resetButtonOnClick: () => void
 }
 
 export const Counter = (props: CounterPropsType) => {
+  const incrementButtonOnClick = () => props.incrementOnClick()
+  const resetButtonOnClick = () => props.resetButtonOnClick()
+
   return (
     <Container>
       <FlexWrapper justify="center" align="center" border padding="30px">
-        <CounterCurrentValue error={props.error || props.currentValue === props.maxValue}>
-          {props.currentValue}
-        </CounterCurrentValue>
+        <CounterCurrentValue isError={props.isError}>{props.currentValue}</CounterCurrentValue>
       </FlexWrapper>
       <FlexWrapper justify="space-around" border padding="20px">
-        <StyledButton
-          onClick={props.incValue}
-          disabled={props.currentValue === props.maxValue || !!props.messageText}
-        >
+        <StyledButton onClick={incrementButtonOnClick} disabled={props.isDisabledIncrementButton}>
           inc
         </StyledButton>
-        <StyledButton
-          onClick={props.resetCounter}
-          disabled={props.currentValue === props.startValue || !!props.messageText}
-        >
+        <StyledButton onClick={resetButtonOnClick} disabled={props.isDisabledResetButton}>
           reset
         </StyledButton>
       </FlexWrapper>
@@ -39,10 +34,11 @@ export const Counter = (props: CounterPropsType) => {
   )
 }
 
-// StyledCounterCurrentValue
-const CounterCurrentValue = styled.div<{ error: boolean }>`
+type CounterCurrentValuePropsType = { isError: boolean }
+
+const CounterCurrentValue = styled.div<CounterCurrentValuePropsType>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(p) => (p.error ? "red" : "")};
+  color: ${(p) => (p.isError ? "red" : "")};
 `

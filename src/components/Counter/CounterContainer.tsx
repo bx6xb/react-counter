@@ -6,6 +6,7 @@ import {
   incrementCurrentValueAC,
   resetCurrentValueAC,
 } from "../../redux/CounterReducer/CounterReducer"
+import { INVALID_VALUE_MESSAGE } from "../CounterSettings/CounterSettingsContainer"
 
 export const CounterContainer = () => {
   const state = useSelector((state: StateType) => state.counter)
@@ -21,13 +22,12 @@ export const CounterContainer = () => {
 
   return (
     <Counter
-      currentValue={state.currentValue}
-      startValue={state.startValue}
-      maxValue={state.maxValue}
-      incValue={incValue}
-      resetCounter={resetCounter}
-      messageText={state.messageText}
-      error={state.error}
+      currentValue={state.messageText || state.currentValue}
+      isDisabledIncrementButton={state.currentValue === state.maxValue || !!state.messageText}
+      isDisabledResetButton={state.currentValue === state.startValue || !!state.messageText}
+      incrementOnClick={incValue}
+      resetButtonOnClick={resetCounter}
+      isError={state.messageText === INVALID_VALUE_MESSAGE}
     />
   )
 }

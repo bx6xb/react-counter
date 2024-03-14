@@ -1,52 +1,58 @@
-import { useSelector } from "react-redux"
 import { CounterSettings } from "./CounterSettings"
-import { StateType } from "../../redux/store"
 import { useDispatch } from "react-redux"
 import {
+  INITIAL_MAX_VALUE,
+  INITIAL_START_VALUE,
   changeMaxValueAC,
-  changeMessageTextAndErrorAC,
+  changeMessageText,
   changeStartValueAC,
 } from "../../redux/CounterReducer/CounterReducer"
-import {
-  changeInputMaxValueAC,
-  changeInputStartValueAC,
-} from "../../redux/CounterSettingsReducer/CounterSettingsReducer"
+import { useCallback, useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { StateType } from "../../redux/store"
+
+export const INVALID_VALUE_MESSAGE = "Invalid value!"
+export const PRESS_SET_BUTTON_MESSAGE = "Press 'set' button"
 
 export const CounterSettingsContainer = () => {
-  const { counter, counterSettings } = useSelector((state: StateType) => state)
+  const [inputStartValue, setInputStartValue] = useState(INITIAL_START_VALUE)
+  const [inputMaxValue, setInputMaxValue] = useState(INITIAL_MAX_VALUE)
+
   const dispatch = useDispatch()
+  const state = useSelector((state: StateType) => state.counter)
 
-  const changeStartValue = (value: number) => {
-    dispatch(changeStartValueAC(value))
-  }
+  const setButtonOnClick = useCallback(() => {
+    dispatch(changeStartValueAC(inputStartValue))
+    dispatch(changeMaxValueAC(inputMaxValue))
+  }, [dispatch, inputStartValue, inputMaxValue])
 
-  const changeMaxValue = (value: number) => {
-    dispatch(changeMaxValueAC(value))
-  }
+  const isError = inputStartValue < 0 || inputMaxValue < 0 || inputStartValue >= inputMaxValue
+  const isChanged = state.startValue !== inputStartValue || state.maxValue !== inputMaxValue
 
-  const changeMessageTextAndError = (messageText: string, error: boolean) => {
-    dispatch(changeMessageTextAndErrorAC(messageText, error))
-  }
+  useEffect(() => {
+    if (isError) {
+      dispatch(changeMessageText(INVALID_VALUE_MESSAGE))
+    } else {
+      dispatch(changeMessageText(""))
+    }
+  }, [isError])
 
-  const setInputStartValue = (value: number) => {
-    dispatch(changeInputStartValueAC(value))
-  }
-
-  const setInputMaxValue = (value: number) => {
-    dispatch(changeInputMaxValueAC(value))
-  }
+  // useEffect(() => {
+  //   if (isChanged) {
+  //     dispatch(changeMessageText(PRESS_SET_BUTTON_MESSAGE))
+  //   } else {
+  //     dispatch(changeMessageText(""))
+  //   }
+  // }, [isChanged])
 
   return (
     <CounterSettings
-      startValue={counter.startValue}
-      maxValue={counter.maxValue}
-      changeStartValue={changeStartValue}
-      changeMaxValue={changeMaxValue}
-      changeMessageTextAndError={changeMessageTextAndError}
-      inputStartValue={counterSettings.inputStartValue}
-      inputMaxValue={counterSettings.inputMaxValue}
-      setInputStartValue={setInputStartValue}
-      setInputMaxValue={setInputMaxValue}
+      startValue={inputStartValue}
+      maxValue={inputMaxValue}
+      startValueOnChange={setInputStartValue}
+      maxValueOnChange={setInputMaxValue}
+      setButtonOnClick={setButtonOnClick}
+      isError={isError}
     />
   )
 }

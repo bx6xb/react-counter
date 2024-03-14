@@ -7,22 +7,26 @@ type InputPropsType = {
   title: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number
-  error?: boolean
+  isError?: boolean
 }
 
 export const Input = (props: InputPropsType) => {
   return (
     <FlexWrapper justify="space-between" align="center" wrap="wrap">
       <StyledLabel>{props.title}</StyledLabel>
-      <StyledInput error={props.error} value={props.value || ""} onChange={props.onChange} />
+      <StyledInput isError={props.isError} value={props.value || ""} onChange={props.onChange} />
     </FlexWrapper>
   )
 }
 
-const StyledInput = styled.input.attrs({ type: "number" })<{ error?: boolean }>`
+type StyledInputPropsType = {
+  isError?: boolean
+}
+
+const StyledInput = styled.input.attrs({ type: "number" })<StyledInputPropsType>`
   height: 40px;
-  border: 4px solid ${(p) => (p.error ? "red" : Theme.colors.accent)};
-  color: ${(p) => (p.error ? "red" : "")};
+  border: 4px solid ${(p) => (p.isError ? "red" : Theme.colors.accent)};
+  color: ${(p) => (p.isError ? "red" : "")};
   border-radius: 4px;
   max-width: 200px;
   text-align: center;

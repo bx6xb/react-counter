@@ -3,7 +3,6 @@ export type CounterStateType = {
   startValue: number
   maxValue: number
   messageText: string
-  error: boolean
 }
 
 export const INITIAL_CURRENT_VALUE = 0
@@ -15,14 +14,13 @@ export const initialState: CounterStateType = {
   startValue: INITIAL_START_VALUE,
   maxValue: INITIAL_MAX_VALUE,
   messageText: "",
-  error: false,
 }
 
 type IncrementCurrentValueActionType = ReturnType<typeof incrementCurrentValueAC>
 type ResetCurrentValueActionType = ReturnType<typeof resetCurrentValueAC>
 type ChangeStartValueActionType = ReturnType<typeof changeStartValueAC>
 type ChangeMaxValueActionType = ReturnType<typeof changeMaxValueAC>
-type ChangeMessageTextAndErrorActionType = ReturnType<typeof changeMessageTextAndErrorAC>
+type ChangeMessageTextAndErrorActionType = ReturnType<typeof changeMessageText>
 
 type CounterReducerActionType =
   | IncrementCurrentValueActionType
@@ -57,11 +55,10 @@ export const CounterReducer = (
         ...state,
         maxValue: action.newMaxValue,
       }
-    case "CHANGE_MESSAGE_TEXT_AND_ERROR":
+    case "CHANGE_MESSAGE_TEXT":
       return {
         ...state,
         messageText: action.messageText,
-        error: action.error,
       }
     default:
       return state
@@ -88,9 +85,8 @@ export const changeMaxValueAC = (newMaxValue: number) =>
     newMaxValue,
   } as const)
 
-export const changeMessageTextAndErrorAC = (messageText: string, error: boolean) =>
+export const changeMessageText = (messageText: string) =>
   ({
-    type: "CHANGE_MESSAGE_TEXT_AND_ERROR",
+    type: "CHANGE_MESSAGE_TEXT",
     messageText,
-    error,
   } as const)
