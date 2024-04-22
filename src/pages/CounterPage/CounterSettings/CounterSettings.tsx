@@ -3,6 +3,7 @@ import { FlexWrapper } from "../../../components/FlexWrapper"
 import { StyledButton } from "../../../components/StyledButton"
 import React, { ChangeEvent } from "react"
 import { Link } from "react-router-dom"
+import styled from "styled-components"
 
 type CounterSettingsPropsType = {
   startValue: number
@@ -28,7 +29,7 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
 
   return (
     <>
-      <FlexWrapper $direction="column" $border $padding="15px">
+      <AdaptiveFlexWrapper $direction="column" $border $padding="15px">
         <Input
           isError={props.isError}
           title="start value:"
@@ -41,7 +42,7 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
           value={props.maxValue.toString()}
           onChange={maxValueOnChange}
         />
-      </FlexWrapper>
+      </AdaptiveFlexWrapper>
 
       <FlexWrapper $border $padding="20px" $justify="center" $align="center">
         <Link to="/counter">
@@ -53,3 +54,9 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
     </>
   )
 })
+
+const AdaptiveFlexWrapper = styled(FlexWrapper)`
+  @media (max-width: 420px) {
+    align-items: center;
+  }
+`

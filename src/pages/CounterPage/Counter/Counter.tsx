@@ -20,12 +20,18 @@ export const Counter = (props: CounterPropsType) => {
 
   return (
     <>
-      <FlexWrapper $justify="center" $align="center" $border $padding="30px">
+      <FlexWrapper $justify="center" $align="center" $border $padding="20px">
         <CounterCurrentValue $isError={props.isError || props.currentValue === props.maxValue}>
           {props.messageText || props.currentValue}
         </CounterCurrentValue>
       </FlexWrapper>
-      <FlexWrapper $justify="space-between" $border $padding="20px" $gap="15px">
+      <AdaptiveFlexWrapper
+        $justify="space-between"
+        $border
+        $padding="20px"
+        $gap="15px"
+        $wrap="wrap"
+      >
         <StyledButton onClick={incrementButtonOnClick} disabled={props.isDisabledIncrementButton}>
           inc
         </StyledButton>
@@ -35,7 +41,7 @@ export const Counter = (props: CounterPropsType) => {
         <Link to={"/counter-settings"}>
           <StyledButton>set</StyledButton>
         </Link>
-      </FlexWrapper>
+      </AdaptiveFlexWrapper>
     </>
   )
 }
@@ -48,4 +54,11 @@ const CounterCurrentValue = styled.div<CounterCurrentValuePropsType>`
   align-items: center;
   text-align: center;
   color: ${(p) => (p.$isError ? "red" : "")};
+  font-size: 50px;
+`
+
+const AdaptiveFlexWrapper = styled(FlexWrapper)`
+  @media (max-width: 420px) {
+    justify-content: center;
+  }
 `

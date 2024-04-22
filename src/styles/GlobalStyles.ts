@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${Theme.colors.main};
     color: ${Theme.colors.accent};
     min-width: 320px;
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
   }

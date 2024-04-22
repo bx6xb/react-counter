@@ -12,7 +12,7 @@ type InputPropsType = {
 
 export const Input = (props: InputPropsType) => {
   return (
-    <FlexWrapper $justify="space-between" $align="center" $wrap="wrap">
+    <FlexWrapper $justify="center" $align="center" $wrap="wrap">
       <StyledLabel>{props.title}</StyledLabel>
       <StyledInput $isError={props.isError} value={props.value || ""} onChange={props.onChange} />
     </FlexWrapper>
@@ -36,5 +36,4 @@ const StyledInput = styled.input.attrs({ type: "number" })<StyledInputPropsType>
 
 const StyledLabel = styled.label`
   margin-right: 20px;
-  flex-shrink: 0;
 `
