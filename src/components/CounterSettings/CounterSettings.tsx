@@ -28,7 +28,7 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
 
   return (
     <Container>
-      <FlexWrapper direction="column">
+      <FlexWrapper $direction="column">
         <Input
           isError={props.isError}
           title="start value:"
@@ -43,7 +43,7 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
         />
       </FlexWrapper>
 
-      <FlexWrapper border padding="20px" justify="center" align="center">
+      <FlexWrapper $border $padding="20px" $justify="center" $align="center">
         <StyledButton disabled={props.isError} onClick={setButtonOnClick}>
           set
         </StyledButton>

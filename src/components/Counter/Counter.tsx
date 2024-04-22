@@ -4,8 +4,9 @@ import { FlexWrapper } from "../../styles/FlexWrapper"
 import styled from "styled-components"
 
 type CounterPropsType = {
-  currentValue: number | string
-
+  currentValue: number
+  maxValue: number
+  messageText: string
   isError: boolean
   isDisabledIncrementButton: boolean
   isDisabledResetButton: boolean
@@ -19,10 +20,12 @@ export const Counter = (props: CounterPropsType) => {
 
   return (
     <Container>
-      <FlexWrapper justify="center" align="center" border padding="30px">
-        <CounterCurrentValue isError={props.isError}>{props.currentValue}</CounterCurrentValue>
+      <FlexWrapper $justify="center" $align="center" $border $padding="30px">
+        <CounterCurrentValue $isError={props.isError || props.currentValue === props.maxValue}>
+          {props.messageText || props.currentValue}
+        </CounterCurrentValue>
       </FlexWrapper>
-      <FlexWrapper justify="space-around" border padding="20px">
+      <FlexWrapper $justify="space-around" $border $padding="20px">
         <StyledButton onClick={incrementButtonOnClick} disabled={props.isDisabledIncrementButton}>
           inc
         </StyledButton>
@@ -34,11 +37,11 @@ export const Counter = (props: CounterPropsType) => {
   )
 }
 
-type CounterCurrentValuePropsType = { isError: boolean }
+type CounterCurrentValuePropsType = { $isError: boolean }
 
 const CounterCurrentValue = styled.div<CounterCurrentValuePropsType>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(p) => (p.isError ? "red" : "")};
+  color: ${(p) => (p.$isError ? "red" : "")};
 `

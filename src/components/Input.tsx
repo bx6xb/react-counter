@@ -12,21 +12,21 @@ type InputPropsType = {
 
 export const Input = (props: InputPropsType) => {
   return (
-    <FlexWrapper justify="space-between" align="center" wrap="wrap">
+    <FlexWrapper $justify="space-between" $align="center" $wrap="wrap">
       <StyledLabel>{props.title}</StyledLabel>
-      <StyledInput isError={props.isError} value={props.value || ""} onChange={props.onChange} />
+      <StyledInput $isError={props.isError} value={props.value || ""} onChange={props.onChange} />
     </FlexWrapper>
   )
 }
 
 type StyledInputPropsType = {
-  isError?: boolean
+  $isError?: boolean
 }
 
 const StyledInput = styled.input.attrs({ type: "number" })<StyledInputPropsType>`
   height: 40px;
-  border: 4px solid ${(p) => (p.isError ? "red" : Theme.colors.accent)};
-  color: ${(p) => (p.isError ? "red" : "")};
+  border: 4px solid ${(p) => (p.$isError ? "red" : Theme.colors.accent)};
+  color: ${(p) => (p.$isError ? "red" : "")};
   border-radius: 4px;
   max-width: 200px;
   text-align: center;

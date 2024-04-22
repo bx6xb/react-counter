@@ -2,34 +2,36 @@ export type CounterStateType = {
   currentValue: number
   startValue: number
   maxValue: number
+  inputStartValue: number
+  inputMaxValue: number
   messageText: string
+  isError: boolean
 }
 
-export const INITIAL_CURRENT_VALUE = 0
-export const INITIAL_START_VALUE = 0
-export const INITIAL_MAX_VALUE = 5
+const INITIAL_START_VALUE = 0
+const INITIAL_MAX_VALUE = 5
 
 export const initialState: CounterStateType = {
-  currentValue: INITIAL_CURRENT_VALUE,
+  currentValue: 0,
   startValue: INITIAL_START_VALUE,
   maxValue: INITIAL_MAX_VALUE,
+  inputStartValue: INITIAL_START_VALUE,
+  inputMaxValue: INITIAL_MAX_VALUE,
   messageText: "",
+  isError: false,
 }
 
-type IncrementCurrentValueActionType = ReturnType<typeof incrementCurrentValueAC>
-type ResetCurrentValueActionType = ReturnType<typeof resetCurrentValueAC>
-type ChangeStartValueActionType = ReturnType<typeof changeStartValueAC>
-type ChangeMaxValueActionType = ReturnType<typeof changeMaxValueAC>
-type ChangeMessageTextAndErrorActionType = ReturnType<typeof changeMessageText>
-
 type CounterReducerActionType =
-  | IncrementCurrentValueActionType
-  | ResetCurrentValueActionType
-  | ChangeStartValueActionType
-  | ChangeMaxValueActionType
-  | ChangeMessageTextAndErrorActionType
+  | ReturnType<typeof incrementCurrentValueAC>
+  | ReturnType<typeof resetCurrentValueAC>
+  | ReturnType<typeof setStartValueAC>
+  | ReturnType<typeof setMaxValueAC>
+  | ReturnType<typeof setMessageTextAC>
+  | ReturnType<typeof setInputStartValueAC>
+  | ReturnType<typeof setInputMaxValueAC>
+  | ReturnType<typeof setErrorAC>
 
-export const CounterReducer = (
+export const counterReducer = (
   state: CounterStateType = initialState,
   action: CounterReducerActionType
 ): CounterStateType => {
@@ -37,56 +39,88 @@ export const CounterReducer = (
     case "INCREMENT_CURRENT_VALUE":
       return {
         ...state,
-        currentValue: state.currentValue + action.summand,
+        currentValue: state.currentValue + 1,
       }
     case "RESET_CURRENT_VALUE":
       return {
         ...state,
         currentValue: state.startValue,
       }
-    case "CHANGE_START_VALUE":
+    case "SET_START_VALUE":
       return {
         ...state,
         currentValue: action.newStartValue,
         startValue: action.newStartValue,
       }
-    case "CHANGE_MAX_VALUE":
+    case "SET_MAX_VALUE":
       return {
         ...state,
         maxValue: action.newMaxValue,
       }
-    case "CHANGE_MESSAGE_TEXT":
+    case "SET_MESSAGE_TEXT":
       return {
         ...state,
         messageText: action.messageText,
+      }
+    case "SET_INPUT_START_VALUE":
+      return {
+        ...state,
+        inputStartValue: action.inputStartValue,
+      }
+    case "SET_INPUT_MAX_VALUE":
+      return {
+        ...state,
+        inputMaxValue: action.inputMaxValue,
+      }
+    case "SET_ERROR":
+      return {
+        ...state,
+        isError: action.isError,
       }
     default:
       return state
   }
 }
 
-export const incrementCurrentValueAC = (summand: number) =>
-  ({ type: "INCREMENT_CURRENT_VALUE", summand } as const)
+export const incrementCurrentValueAC = () => ({ type: "INCREMENT_CURRENT_VALUE" } as const)
 
 export const resetCurrentValueAC = () =>
   ({
     type: "RESET_CURRENT_VALUE",
   } as const)
 
-export const changeStartValueAC = (newStartValue: number) =>
+export const setStartValueAC = (newStartValue: number) =>
   ({
-    type: "CHANGE_START_VALUE",
+    type: "SET_START_VALUE",
     newStartValue,
   } as const)
 
-export const changeMaxValueAC = (newMaxValue: number) =>
+export const setMaxValueAC = (newMaxValue: number) =>
   ({
-    type: "CHANGE_MAX_VALUE",
+    type: "SET_MAX_VALUE",
     newMaxValue,
   } as const)
 
-export const changeMessageText = (messageText: string) =>
+export const setInputStartValueAC = (inputStartValue: number) =>
   ({
-    type: "CHANGE_MESSAGE_TEXT",
+    type: "SET_INPUT_START_VALUE",
+    inputStartValue,
+  } as const)
+
+export const setInputMaxValueAC = (inputMaxValue: number) =>
+  ({
+    type: "SET_INPUT_MAX_VALUE",
+    inputMaxValue,
+  } as const)
+
+export const setMessageTextAC = (messageText: string) =>
+  ({
+    type: "SET_MESSAGE_TEXT",
     messageText,
+  } as const)
+
+export const setErrorAC = (isError: boolean) =>
+  ({
+    type: "SET_ERROR",
+    isError,
   } as const)
