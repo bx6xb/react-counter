@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import { CounterContainer } from "./components/Counter/CounterContainer"
-import { CounterSettingsContainer } from "./components/CounterSettings/CounterSettingsContainer"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setCounterStateTC } from "./redux/counterReducer/counterReducer"
 import { ThunkDispatch } from "redux-thunk"
 import { AppRootStateType, RootActionType } from "./redux/store"
+import { FlexWrapper } from "./components/FlexWrapper"
+import { CounterPage } from "./pages/CounterPage/CounterPage"
 
 function App() {
   const dispatch = useDispatch<ThunkDispatch<AppRootStateType, unknown, RootActionType>>()
@@ -16,18 +16,15 @@ function App() {
 
   return (
     <StyledApp>
-      <CounterSettingsContainer />
-      <CounterContainer />
+      <FlexWrapper $justify="center" $wrap="wrap" $align="center" $gap="50px">
+        <CounterPage />
+      </FlexWrapper>
     </StyledApp>
   )
 }
 
 const StyledApp = styled.div`
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
 `
 
 export default App

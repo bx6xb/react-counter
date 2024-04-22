@@ -1,8 +1,8 @@
-import { Container } from "../../styledComponents/Container"
-import { Input } from "../Input"
-import { FlexWrapper } from "../../styledComponents/FlexWrapper"
-import { StyledButton } from "../../styledComponents/StyledButton"
+import { Input } from "../../../components/Input"
+import { FlexWrapper } from "../../../components/FlexWrapper"
+import { StyledButton } from "../../../components/StyledButton"
 import React, { ChangeEvent } from "react"
+import { Link } from "react-router-dom"
 
 type CounterSettingsPropsType = {
   startValue: number
@@ -27,8 +27,8 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
   }
 
   return (
-    <Container>
-      <FlexWrapper $direction="column">
+    <>
+      <FlexWrapper $direction="column" $border $padding="15px">
         <Input
           isError={props.isError}
           title="start value:"
@@ -44,10 +44,12 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
       </FlexWrapper>
 
       <FlexWrapper $border $padding="20px" $justify="center" $align="center">
-        <StyledButton disabled={props.isError} onClick={setButtonOnClick}>
-          set
-        </StyledButton>
+        <Link to="/counter">
+          <StyledButton disabled={props.isError} onClick={setButtonOnClick}>
+            set
+          </StyledButton>
+        </Link>
       </FlexWrapper>
-    </Container>
+    </>
   )
 })

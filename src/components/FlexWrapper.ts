@@ -8,6 +8,7 @@ type FlexWrapperPropsType = {
   $direction?: string
   $padding?: string
   $border?: boolean
+  $gap?: string
 }
 
 export const FlexWrapper = styled.div<FlexWrapperPropsType>`
@@ -19,6 +20,7 @@ export const FlexWrapper = styled.div<FlexWrapperPropsType>`
   flex-wrap: ${(p) => p.$wrap || "nowrap"};
   flex-direction: ${(p) => p.$direction || "row"};
   padding: ${(p) => p.$padding || "0px"};
+  gap: ${(p) => p.$gap || "0px"};
   ${(p) =>
     p.$border
       ? css`

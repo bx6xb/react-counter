@@ -7,9 +7,9 @@ import {
   setInputMaxValueAC,
   setInputStartValueAC,
   setErrorAC,
-} from "../../redux/counterReducer/counterReducer"
+} from "../../../redux/counterReducer/counterReducer"
 import { useSelector } from "react-redux"
-import { AppRootStateType } from "../../redux/store"
+import { AppRootStateType } from "../../../redux/store"
 import { useEffect } from "react"
 
 const INVALID_VALUE_MESSAGE = "Invalid value"

@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux"
 import { Counter } from "./Counter"
-import { AppRootStateType } from "../../redux/store"
+import { AppRootStateType } from "../../../redux/store"
 import { useDispatch } from "react-redux"
 import {
   incrementCurrentValueAC,
   resetCurrentValueAC,
-} from "../../redux/counterReducer/counterReducer"
+} from "../../../redux/counterReducer/counterReducer"
 
 export const CounterContainer = () => {
   const state = useSelector((state: AppRootStateType) => state.counter)

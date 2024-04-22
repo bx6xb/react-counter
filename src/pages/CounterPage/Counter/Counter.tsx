@@ -1,7 +1,7 @@
-import { StyledButton } from "../../styledComponents/StyledButton"
-import { Container } from "../../styledComponents/Container"
-import { FlexWrapper } from "../../styledComponents/FlexWrapper"
+import { StyledButton } from "../../../components/StyledButton"
+import { FlexWrapper } from "../../../components/FlexWrapper"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 type CounterPropsType = {
   currentValue: number
@@ -19,21 +19,24 @@ export const Counter = (props: CounterPropsType) => {
   const resetButtonOnClick = () => props.resetButtonOnClick()
 
   return (
-    <Container>
+    <>
       <FlexWrapper $justify="center" $align="center" $border $padding="30px">
         <CounterCurrentValue $isError={props.isError || props.currentValue === props.maxValue}>
           {props.messageText || props.currentValue}
         </CounterCurrentValue>
       </FlexWrapper>
-      <FlexWrapper $justify="space-around" $border $padding="20px">
+      <FlexWrapper $justify="space-between" $border $padding="20px" $gap="15px">
         <StyledButton onClick={incrementButtonOnClick} disabled={props.isDisabledIncrementButton}>
           inc
         </StyledButton>
         <StyledButton onClick={resetButtonOnClick} disabled={props.isDisabledResetButton}>
           reset
         </StyledButton>
+        <Link to={"/counter-settings"}>
+          <StyledButton>set</StyledButton>
+        </Link>
       </FlexWrapper>
-    </Container>
+    </>
   )
 }
 
@@ -43,5 +46,6 @@ const CounterCurrentValue = styled.div<CounterCurrentValuePropsType>`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   color: ${(p) => (p.$isError ? "red" : "")};
 `
