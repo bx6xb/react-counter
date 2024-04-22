@@ -1,3 +1,7 @@
+import { ThunkAction } from "redux-thunk"
+import { AppRootStateType, RootActionType } from "../store"
+import { localStorageAPI } from "../../localStorageAPI/localStorageAPI"
+
 export type CounterStateType = {
   currentValue: number
   startValue: number
@@ -8,20 +12,24 @@ export type CounterStateType = {
   isError: boolean
 }
 
+const INITIAL_CURRENT_VALUE = 0
 const INITIAL_START_VALUE = 0
 const INITIAL_MAX_VALUE = 5
+const INITIAL_MESSAGE_TEXT = ""
+const INITIAL_IS_ERROR_VALUE = false
 
 export const initialState: CounterStateType = {
-  currentValue: 0,
+  currentValue: INITIAL_CURRENT_VALUE,
   startValue: INITIAL_START_VALUE,
   maxValue: INITIAL_MAX_VALUE,
   inputStartValue: INITIAL_START_VALUE,
   inputMaxValue: INITIAL_MAX_VALUE,
-  messageText: "",
-  isError: false,
+  messageText: INITIAL_MESSAGE_TEXT,
+  isError: INITIAL_IS_ERROR_VALUE,
 }
 
-type CounterReducerActionType =
+export type CounterReducerActionType =
+  | ReturnType<typeof setCounterStateAC>
   | ReturnType<typeof incrementCurrentValueAC>
   | ReturnType<typeof resetCurrentValueAC>
   | ReturnType<typeof setStartValueAC>
@@ -36,6 +44,8 @@ export const counterReducer = (
   action: CounterReducerActionType
 ): CounterStateType => {
   switch (action.type) {
+    case "SET_COUNTER_STATE":
+      return action.state
     case "INCREMENT_CURRENT_VALUE":
       return {
         ...state,
@@ -82,6 +92,13 @@ export const counterReducer = (
   }
 }
 
+// actions
+export const setCounterStateAC = (state: CounterStateType) =>
+  ({
+    type: "SET_COUNTER_STATE",
+    state,
+  } as const)
+
 export const incrementCurrentValueAC = () => ({ type: "INCREMENT_CURRENT_VALUE" } as const)
 
 export const resetCurrentValueAC = () =>
@@ -124,3 +141,12 @@ export const setErrorAC = (isError: boolean) =>
     type: "SET_ERROR",
     isError,
   } as const)
+
+// thunks
+export const setCounterStateTC =
+  (): ThunkAction<void, AppRootStateType, unknown, RootActionType> => (dispatch) => {
+    const state = localStorageAPI.load()
+    if (state) {
+      dispatch(setCounterStateAC(state.counter))
+    }
+  }

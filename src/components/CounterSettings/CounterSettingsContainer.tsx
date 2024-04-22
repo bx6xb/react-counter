@@ -9,7 +9,7 @@ import {
   setErrorAC,
 } from "../../redux/counterReducer/counterReducer"
 import { useSelector } from "react-redux"
-import { RootStateType } from "../../redux/store"
+import { AppRootStateType } from "../../redux/store"
 import { useEffect } from "react"
 
 const INVALID_VALUE_MESSAGE = "Invalid value"
@@ -17,7 +17,7 @@ const PRESS_SET_BUTTON_MESSAGE = "Enter values and press 'set' button"
 
 export const CounterSettingsContainer = () => {
   const dispatch = useDispatch()
-  const state = useSelector((state: RootStateType) => state.counter)
+  const state = useSelector((state: AppRootStateType) => state.counter)
 
   const setButtonOnClick = () => {
     dispatch(setStartValueAC(state.inputStartValue))

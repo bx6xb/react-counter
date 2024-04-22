@@ -1,10 +1,18 @@
-import { combineReducers, legacy_createStore } from "redux"
-import { counterReducer } from "./counterReducer/counterReducer"
+import { applyMiddleware, combineReducers, legacy_createStore } from "redux"
+import { CounterReducerActionType, counterReducer } from "./counterReducer/counterReducer"
+import { localStorageAPI } from "../localStorageAPI/localStorageAPI"
+import { thunk } from "redux-thunk"
 
 const rootReducer = combineReducers({
   counter: counterReducer,
 })
 
-export const store = legacy_createStore(rootReducer)
+export const store = legacy_createStore(rootReducer, undefined, applyMiddleware(thunk))
 
-export type RootStateType = ReturnType<typeof store.getState>
+store.subscribe(() => {
+  localStorageAPI.save(store.getState())
+})
+
+export type AppRootStateType = ReturnType<typeof store.getState>
+
+export type RootActionType = CounterReducerActionType

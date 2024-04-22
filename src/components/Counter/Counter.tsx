@@ -1,6 +1,6 @@
-import { StyledButton } from "../../styles/StyledButton"
-import { Container } from "../../styles/Container"
-import { FlexWrapper } from "../../styles/FlexWrapper"
+import { StyledButton } from "../../styledComponents/StyledButton"
+import { Container } from "../../styledComponents/Container"
+import { FlexWrapper } from "../../styledComponents/FlexWrapper"
 import styled from "styled-components"
 
 type CounterPropsType = {

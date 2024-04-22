@@ -1,7 +1,7 @@
-import { Container } from "../../styles/Container"
+import { Container } from "../../styledComponents/Container"
 import { Input } from "../Input"
-import { FlexWrapper } from "../../styles/FlexWrapper"
-import { StyledButton } from "../../styles/StyledButton"
+import { FlexWrapper } from "../../styledComponents/FlexWrapper"
+import { StyledButton } from "../../styledComponents/StyledButton"
 import React, { ChangeEvent } from "react"
 
 type CounterSettingsPropsType = {

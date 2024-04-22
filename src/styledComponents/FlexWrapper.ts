@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { Theme } from "./Theme"
+import { Theme } from "../styles/Theme"
 
 type FlexWrapperPropsType = {
   $justify?: string
