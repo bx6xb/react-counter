@@ -1,7 +1,7 @@
 import { Input } from "../../../components/Input"
 import { FlexWrapper } from "../../../components/FlexWrapper"
 import { StyledButton } from "../../../components/StyledButton"
-import React, { ChangeEvent } from "react"
+import { ChangeEvent } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
@@ -14,7 +14,7 @@ type CounterSettingsPropsType = {
   isError: boolean
 }
 
-export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
+export const CounterSettings = (props: CounterSettingsPropsType) => {
   const startValueOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     props.startValueOnChange(+e.currentTarget.value)
   }
@@ -53,7 +53,7 @@ export const CounterSettings = React.memo((props: CounterSettingsPropsType) => {
       </FlexWrapper>
     </>
   )
-})
+}
 
 const AdaptiveFlexWrapper = styled(FlexWrapper)`
   @media (max-width: 420px) {

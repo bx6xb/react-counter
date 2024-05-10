@@ -2,27 +2,25 @@ import { StyledButton } from "../../../components/StyledButton"
 import { FlexWrapper } from "../../../components/FlexWrapper"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { useCounter } from "./hooks/useCounter"
 
-type CounterPropsType = {
-  currentValue: number
-  maxValue: number
-  messageText: string
-  isError: boolean
-  isDisabledIncrementButton: boolean
-  isDisabledResetButton: boolean
-  incrementOnClick: () => void
-  resetButtonOnClick: () => void
-}
-
-export const Counter = (props: CounterPropsType) => {
-  const incrementButtonOnClick = () => props.incrementOnClick()
-  const resetButtonOnClick = () => props.resetButtonOnClick()
+export const Counter = () => {
+  const {
+    currentValue,
+    isError,
+    maxValue,
+    messageText,
+    incValue,
+    resetCounter,
+    isDisabledIncrementButton,
+    isDisabledResetButton,
+  } = useCounter()
 
   return (
     <>
       <FlexWrapper $justify="center" $align="center" $border $padding="20px">
-        <CounterCurrentValue $isError={props.isError || props.currentValue === props.maxValue}>
-          {props.messageText || props.currentValue}
+        <CounterCurrentValue $isError={isError || currentValue === maxValue}>
+          {messageText || currentValue}
         </CounterCurrentValue>
       </FlexWrapper>
       <AdaptiveFlexWrapper
@@ -32,10 +30,10 @@ export const Counter = (props: CounterPropsType) => {
         $gap="15px"
         $wrap="wrap"
       >
-        <StyledButton onClick={incrementButtonOnClick} disabled={props.isDisabledIncrementButton}>
+        <StyledButton onClick={incValue} disabled={isDisabledIncrementButton}>
           inc
         </StyledButton>
-        <StyledButton onClick={resetButtonOnClick} disabled={props.isDisabledResetButton}>
+        <StyledButton onClick={resetCounter} disabled={isDisabledResetButton}>
           reset
         </StyledButton>
         <Link to={"/counter-settings"}>
