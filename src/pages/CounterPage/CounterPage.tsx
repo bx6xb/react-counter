@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Container } from "../../components/Container"
-import { CounterSettingsContainer } from "./CounterSettings/CounterSettingsContainer"
 import { Counter } from "./Counter/Counter"
+import { CounterSettings } from "./CounterSettings/CounterSettings"
 
 export const CounterPage = () => {
   return (
@@ -10,7 +10,7 @@ export const CounterPage = () => {
         <Route path="/*" element={<Navigate to="/counter" />} />
 
         <Route path="/counter" element={<Counter />} />
-        <Route path="/counter-settings" element={<CounterSettingsContainer />} />
+        <Route path="/counter-settings" element={<CounterSettings />} />
       </Routes>
     </Container>
   )
