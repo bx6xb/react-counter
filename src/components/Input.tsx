@@ -3,14 +3,14 @@ import { Theme } from "../styles/Theme"
 import { FlexWrapper } from "./FlexWrapper"
 import { ChangeEvent } from "react"
 
-type InputPropsType = {
+type InputProps = {
   title: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   value?: string | number
   isError?: boolean
 }
 
-export const Input = (props: InputPropsType) => {
+export const Input = (props: InputProps) => {
   return (
     <FlexWrapper $justify="center" $align="center" $wrap="wrap">
       <StyledLabel>{props.title}</StyledLabel>
@@ -19,11 +19,11 @@ export const Input = (props: InputPropsType) => {
   )
 }
 
-type StyledInputPropsType = {
+type StyledInputProps = {
   $isError?: boolean
 }
 
-const StyledInput = styled.input.attrs({ type: "number" })<StyledInputPropsType>`
+const StyledInput = styled.input.attrs({ type: "number" })<StyledInputProps>`
   height: 40px;
   border: 4px solid ${(p) => (p.$isError ? "red" : Theme.colors.accent)};
   color: ${(p) => (p.$isError ? "red" : "")};

@@ -5,31 +5,25 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../redux/store"
 
 export const useCounter = () => {
-  const { currentValue, isError, maxValue, messageText, startValue } = useAppSelector(
-    (state) => state.counter
-  )
+  const { currentValue, maxValue, startValue } = useAppSelector((state) => state.counter)
   const dispatch = useAppDispatch()
 
   const incValue = () => {
     dispatch(incrementCurrentValueAC())
   }
-
   const resetCounter = () => {
     dispatch(resetCurrentValueAC())
   }
 
-  const isDisabledIncrementButton = currentValue === maxValue || !!messageText
-  const isDisabledResetButton = currentValue === startValue || !!messageText
+  const isIncrementButtonDisabled = currentValue === maxValue
+  const isResetButtonDisabled = currentValue === startValue
 
   return {
     currentValue,
-    isError,
     maxValue,
-    messageText,
-    startValue,
     incValue,
     resetCounter,
-    isDisabledIncrementButton,
-    isDisabledResetButton,
+    isIncrementButtonDisabled,
+    isResetButtonDisabled,
   }
 }

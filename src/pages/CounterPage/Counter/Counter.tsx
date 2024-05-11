@@ -7,20 +7,18 @@ import { useCounter } from "./hooks/useCounter"
 export const Counter = () => {
   const {
     currentValue,
-    isError,
     maxValue,
-    messageText,
     incValue,
     resetCounter,
-    isDisabledIncrementButton,
-    isDisabledResetButton,
+    isIncrementButtonDisabled,
+    isResetButtonDisabled,
   } = useCounter()
 
   return (
     <>
       <FlexWrapper $justify="center" $align="center" $border $padding="20px">
-        <CounterCurrentValue $isError={isError || currentValue === maxValue}>
-          {messageText || currentValue}
+        <CounterCurrentValue $isError={currentValue === maxValue}>
+          {currentValue}
         </CounterCurrentValue>
       </FlexWrapper>
       <AdaptiveFlexWrapper
@@ -30,10 +28,10 @@ export const Counter = () => {
         $gap="15px"
         $wrap="wrap"
       >
-        <StyledButton onClick={incValue} disabled={isDisabledIncrementButton}>
+        <StyledButton onClick={incValue} disabled={isIncrementButtonDisabled}>
           inc
         </StyledButton>
-        <StyledButton onClick={resetCounter} disabled={isDisabledResetButton}>
+        <StyledButton onClick={resetCounter} disabled={isResetButtonDisabled}>
           reset
         </StyledButton>
         <Link to={"/counter-settings"}>
@@ -44,9 +42,9 @@ export const Counter = () => {
   )
 }
 
-type CounterCurrentValuePropsType = { $isError: boolean }
+type CounterCurrentValueProps = { $isError: boolean }
 
-const CounterCurrentValue = styled.div<CounterCurrentValuePropsType>`
+const CounterCurrentValue = styled.div<CounterCurrentValueProps>`
   display: flex;
   justify-content: center;
   align-items: center;

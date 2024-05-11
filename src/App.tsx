@@ -3,12 +3,12 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setCounterStateTC } from "./redux/counterReducer/counterReducer"
 import { ThunkDispatch } from "redux-thunk"
-import { AppRootStateType, RootActionType } from "./redux/store"
+import { AppRootState, RootAction } from "./redux/store"
 import { FlexWrapper } from "./components/FlexWrapper"
 import { CounterPage } from "./pages/CounterPage/CounterPage"
 
 function App() {
-  const dispatch = useDispatch<ThunkDispatch<AppRootStateType, unknown, RootActionType>>()
+  const dispatch = useDispatch<ThunkDispatch<AppRootState, unknown, RootAction>>()
 
   useEffect(() => {
     dispatch(setCounterStateTC())

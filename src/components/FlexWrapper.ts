@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 import { Theme } from "../styles/Theme"
 
-type FlexWrapperPropsType = {
+type FlexWrapperProps = {
   $justify?: string
   $align?: string
   $wrap?: string
@@ -11,7 +11,7 @@ type FlexWrapperPropsType = {
   $gap?: string
 }
 
-export const FlexWrapper = styled.div<FlexWrapperPropsType>`
+export const FlexWrapper = styled.div<FlexWrapperProps>`
   width: 100%;
   height: 100%;
   display: flex;
