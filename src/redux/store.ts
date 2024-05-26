@@ -19,9 +19,7 @@ export const store = configureStore({
   preloadedState: load(),
 })
 
-store.subscribe(() => {
-  save(store.getState())
-})
+store.subscribe(() => save(store.getState()))
 
 export const useAppSelector: TypedUseSelectorHook<AppRootState> = useSelector
 export const useAppDispatch = () => useDispatch<Dispatch>()
