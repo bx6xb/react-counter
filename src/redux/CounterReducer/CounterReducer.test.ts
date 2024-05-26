@@ -1,14 +1,14 @@
 import {
-  incrementCurrentValueAC,
+  incrementCurrentValue,
   counterReducer,
   initialState,
-  resetCurrentValueAC,
-  setStartValueAC,
-  setMaxValueAC,
+  resetCurrentValue,
+  setStartValue,
+  setMaxValue,
 } from "./counterReducer"
 
 test("current value should be incremented by 1", () => {
-  const newState = counterReducer(initialState, incrementCurrentValueAC())
+  const newState = counterReducer(initialState, incrementCurrentValue())
 
   expect(newState).not.toBe(initialState)
   expect(newState.currentValue).toBe(1)
@@ -20,7 +20,7 @@ test("current value should be equal start value", () => {
       currentValue: 5,
       startValue: 2,
     },
-    resetCurrentValueAC()
+    resetCurrentValue()
   )
 
   expect(newState).not.toBe(initialState)
@@ -28,7 +28,7 @@ test("current value should be equal start value", () => {
 })
 test("start value should be changed", () => {
   const value = 3
-  const newState = counterReducer(initialState, setStartValueAC({ startValue: value }))
+  const newState = counterReducer(initialState, setStartValue({ startValue: value }))
 
   expect(newState).not.toBe(initialState)
   expect(newState.currentValue).toBe(value)
@@ -36,7 +36,7 @@ test("start value should be changed", () => {
 })
 test("max value should be changed", () => {
   const value = 12
-  const newState = counterReducer(initialState, setMaxValueAC({ maxValue: value }))
+  const newState = counterReducer(initialState, setMaxValue({ maxValue: value }))
 
   expect(newState).not.toBe(initialState)
   expect(newState.maxValue).toBe(value)

@@ -9,27 +9,17 @@ export const slice = createSlice({
   name: "counterSettings",
   initialState,
   reducers: {
-    setCounterSettingsStateAC(
-      state,
-      action: PayloadAction<{ state: CounterSettingsReducerState }>
-    ) {
-      return action.payload.state
-    },
-    setInputStartValueAC(state, action: PayloadAction<{ inputStartValue: number }>) {
+    setInputStartValue(state, action: PayloadAction<{ inputStartValue: number }>) {
       state.inputStartValue = action.payload.inputStartValue
     },
-    setInputMaxValueAC(state, action: PayloadAction<{ inputMaxValue: number }>) {
+    setInputMaxValue(state, action: PayloadAction<{ inputMaxValue: number }>) {
       state.inputMaxValue = action.payload.inputMaxValue
     },
   },
 })
 
 export const counterSettingsReducer = slice.reducer
-export const { setInputStartValueAC, setInputMaxValueAC, setCounterSettingsStateAC } = slice.actions
+export const { setInputStartValue, setInputMaxValue } = slice.actions
 
 // types
 export type CounterSettingsReducerState = typeof initialState
-export type CounterSettingsReducerAction =
-  | ReturnType<typeof setInputStartValueAC>
-  | ReturnType<typeof setInputMaxValueAC>
-  | ReturnType<typeof setCounterSettingsStateAC>

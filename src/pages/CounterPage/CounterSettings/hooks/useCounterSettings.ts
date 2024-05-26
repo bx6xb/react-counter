@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../../../../redux/store"
-import { setMaxValueAC, setStartValueAC } from "../../../../redux/counterReducer/counterReducer"
+import { setMaxValue, setStartValue } from "../../../../redux/counterReducer/counterReducer"
 import { ChangeEvent } from "react"
 import {
-  setInputMaxValueAC,
-  setInputStartValueAC,
+  setInputMaxValue,
+  setInputStartValue,
 } from "../../../../redux/counterSettingsReducer/counterSettingsReducer"
 
 export const useCounterSettings = () => {
@@ -11,14 +11,14 @@ export const useCounterSettings = () => {
   const dispatch = useAppDispatch()
 
   const setButtonOnClick = () => {
-    dispatch(setStartValueAC({ startValue: inputStartValue }))
-    dispatch(setMaxValueAC({ maxValue: inputMaxValue }))
+    dispatch(setStartValue({ startValue: inputStartValue }))
+    dispatch(setMaxValue({ maxValue: inputMaxValue }))
   }
   const startValueOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setInputStartValueAC({ inputStartValue: +e.currentTarget.value }))
+    dispatch(setInputStartValue({ inputStartValue: +e.currentTarget.value }))
   }
   const maxValueOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setInputMaxValueAC({ inputMaxValue: +e.currentTarget.value }))
+    dispatch(setInputMaxValue({ inputMaxValue: +e.currentTarget.value }))
   }
 
   const isValueInvalid =
