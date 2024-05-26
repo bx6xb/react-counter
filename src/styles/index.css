@@ -1,0 +1,21 @@
+@import url("variables.css");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--main);
+  color: var(--accent);
+  min-width: 320px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+button {
+  cursor: pointer;
+  border: unset;
+}

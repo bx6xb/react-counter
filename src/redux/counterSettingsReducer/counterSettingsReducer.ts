@@ -9,7 +9,10 @@ export const slice = createSlice({
   name: "counterSettings",
   initialState,
   reducers: {
-    setInputStartValue(state, action: PayloadAction<{ inputStartValue: number }>) {
+    setInputStartValue(
+      state,
+      action: PayloadAction<{ inputStartValue: number }>
+    ) {
       state.inputStartValue = action.payload.inputStartValue
     },
     setInputMaxValue(state, action: PayloadAction<{ inputMaxValue: number }>) {
@@ -20,6 +23,3 @@ export const slice = createSlice({
 
 export const counterSettingsReducer = slice.reducer
 export const { setInputStartValue, setInputMaxValue } = slice.actions
-
-// types
-export type CounterSettingsReducerState = typeof initialState

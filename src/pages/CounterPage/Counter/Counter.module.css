@@ -1,0 +1,29 @@
+@import url("../../../styles/variables.css");
+
+.currentValue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid var(--accent);
+  padding: 20px;
+  border-radius: 1rem;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.currentValue.error {
+  color: red;
+}
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 15px;
+  flex-wrap: wrap;
+  border: 4px solid var(--accent);
+  border-radius: 1rem;
+}
+@media (max-width: 420px) {
+  .buttonWrapper {
+    justify-content: center;
+  }
+}

@@ -1,9 +1,8 @@
-import { Input } from "../../../components/Input"
-import { FlexWrapper } from "../../../components/FlexWrapper"
-import { StyledButton } from "../../../components/StyledButton"
+import { Input } from "../../../components/Input/Input"
+import { Button } from "../../../components/Button/Button"
 import { Link } from "react-router-dom"
-import styled from "styled-components"
 import { useCounterSettings } from "./hooks/useCounterSettings"
+import s from "./CounterSettings.module.css"
 
 export const CounterSettings = () => {
   const {
@@ -17,7 +16,7 @@ export const CounterSettings = () => {
 
   return (
     <>
-      <AdaptiveFlexWrapper $direction="column" $border $padding="15px">
+      <div className={s.inputWrapper}>
         <Input
           isError={isValueInvalid}
           title="start value:"
@@ -30,21 +29,15 @@ export const CounterSettings = () => {
           value={inputMaxValue.toString()} // to show 0 in input to user
           onChange={maxValueOnChange}
         />
-      </AdaptiveFlexWrapper>
+      </div>
 
-      <FlexWrapper $border $padding="20px" $justify="center" $align="center">
+      <div className={s.buttonWrapper}>
         <Link to="/counter">
-          <StyledButton disabled={isValueInvalid} onClick={setButtonOnClick}>
+          <Button disabled={isValueInvalid} onClick={setButtonOnClick}>
             set
-          </StyledButton>
+          </Button>
         </Link>
-      </FlexWrapper>
+      </div>
     </>
   )
 }
-
-const AdaptiveFlexWrapper = styled(FlexWrapper)`
-  @media (max-width: 420px) {
-    align-items: center;
-  }
-`

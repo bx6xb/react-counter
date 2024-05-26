@@ -1,19 +1,12 @@
-import styled from "styled-components"
-import { FlexWrapper } from "./components/FlexWrapper"
 import { CounterPage } from "./pages/CounterPage/CounterPage"
+import s from "./styles/App.module.css"
 
 function App() {
   return (
-    <StyledApp>
-      <FlexWrapper $justify="center" $wrap="wrap" $align="center" $gap="50px">
-        <CounterPage />
-      </FlexWrapper>
-    </StyledApp>
+    <div className={s.appWrapper}>
+      <CounterPage />
+    </div>
   )
 }
-
-const StyledApp = styled.div`
-  height: 100vh;
-`
 
 export default App

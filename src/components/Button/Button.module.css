@@ -1,0 +1,13 @@
+@import url("../../styles/variables.css");
+
+.button {
+  background-color: var(--accent);
+  color: var(--main);
+  border-radius: 1rem;
+  padding: 10px 20px;
+  font-size: 50px;
+}
+.button:disabled {
+  user-select: none;
+  opacity: 0.5;
+}

@@ -27,8 +27,9 @@ const slice = createSlice({
 })
 
 export const counterReducer = slice.reducer
-export const { incrementCurrentValue, resetCurrentValue, setStartValue, setMaxValue } =
-  slice.actions
-
-// types
-export type CounterState = typeof initialState
+export const {
+  incrementCurrentValue,
+  resetCurrentValue,
+  setStartValue,
+  setMaxValue,
+} = slice.actions

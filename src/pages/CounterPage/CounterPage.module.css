@@ -1,0 +1,14 @@
+@import url("../../styles/variables.css");
+
+.container {
+  min-width: 450px;
+  border: 4px solid var(--accent);
+  border-radius: 1rem;
+  padding: 20px;
+}
+@media (max-width: 450px) {
+  .container {
+    min-width: unset;
+    width: 100%;
+  }
+}
